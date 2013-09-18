@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Shapes | Extract shape-inside from image</title>
+  <style> 
+  
+    figure{
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    
+    figure div{
+      width: 50rem; /* rem to prevent 'font-size' affecting the container */
+      height: 16.25rem;
+    }
+    
+    figcaption{
+      margin: 3rem 0 1rem;
+    }
+
+    #shape{
+      -webkit-shape-inside: url(shape.png);
+      -ms-shape-inside: url(shape.png);
+      -moz-shape-inside: url(shape.png);
+      shape-inside: url(shape.png);
+      font-size: 0.5em; /* 8px equivalent */
+      text-align: justify;
+      overflow: hidden; /* intentionally clip overflow text for this demo */
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      hyphens: auto;
+    }
+    
+    #source{
+      background: url(shape.png) top left, url(alpha-simulation.png) top left ;
+    }
+    
+    .tip{
+      background: #ffc;
+      padding: 2rem;
+      color: black;
+    }
+    
+  </style>
+</head>
+<body>
+  
+  <figure>
+    <figcaption>
+      CSS <code>shape-inside</code> extracted from alpha channel of source image. <a href="http://html.adobe.com/webplatform/layout/shapes/">Learn more<a>
+    </figcaption>
+    
+    <div id="shape">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </figure>
+  
+  <figure>
+    <figcaption>
+      Source image with alpha channel
+    </figcaption>
+    
+    <div id="source"></div>
+  </figure>
+  
+  <script>
+  
+  (function(){
+    
+    function isSupported(prefix){
+      return prefix + 'shape-inside' in document.body.style
+    }
+    
+    // check if any prefixed or non-prefixed variant is supported
+    var isCapable = ['-webkit-','-ms-','-moz-',''].some(isSupported)
+    
+    if (!isCapable){
+      var h = [],
+          p = function(msg){ h.push(msg) }
+
+      p('<p class="tip">')
+        p('This demo needs a browser with CSS Shapes support.')
+        p('<a href="http://html.adobe.com/webplatform/enable/">')
+          p('Find out how to get one')
+        p('</a>')
+      p('</p>')
+      
+      document.body.insertAdjacentHTML('afterbegin', h.join(' '))
+    }
+    
+  })()
+  
+  </script>
+
+</body>
+</html>
